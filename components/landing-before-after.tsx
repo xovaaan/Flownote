@@ -65,12 +65,12 @@ export function LandingBeforeAfter() {
       <div className="absolute inset-0 bg-white/88 backdrop-blur-[2px]" aria-hidden />
       <div className="relative z-10 max-w-6xl mx-auto">
         <div className="text-center mb-14 md:mb-16 space-y-4">
-          <p className="text-xs font-bold text-ink-400 uppercase tracking-widest">How it works</p>
+          <p className="text-xs font-bold text-ink-400 uppercase tracking-widest">Before &amp; after</p>
           <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-ink-950 leading-[1.1]">
-            From rough notes to a polished summary.
+            Messy call notes become a summary you can share.
           </h2>
           <p className="text-lg text-ink-500 max-w-2xl mx-auto font-medium">
-            Record and jot shorthand during the call. Flownote structures everything into clean sections — then generate a share link so anyone can read the enhanced summary.
+            Capture audio and scribble shorthand while you talk. Flownote merges your notes with the transcript into structured sections — then one link for your team or investors.
           </p>
         </div>
 
@@ -83,13 +83,14 @@ export function LandingBeforeAfter() {
 
           <NoteCard label="Your notes + transcript" footer={<RecordingPill />}>
             <h3 className="font-serif text-2xl md:text-[1.65rem] text-ink-950 leading-snug mb-6">
-              Intro call: AllFound
+              Fundraise sync — Groq
             </h3>
             <div className="space-y-1 text-[15px] text-ink-600 font-normal leading-relaxed">
-              <p>From Antler,A16Z</p>
-              <p>Groq valuation, Raising $50M</p>
-              <p>180M post</p>
-              <p className="text-ink-500">&quot;Raising in June&quot;|</p>
+              <p>warm intros — antler, a16z</p>
+              <p>raising 50, target june</p>
+              <p>groq val ~180 post</p>
+              <p>~4x last round, deck v3</p>
+              <p className="text-ink-500">send ic memo by fri|</p>
             </div>
           </NoteCard>
 
@@ -108,29 +109,29 @@ export function LandingBeforeAfter() {
             labelIcon={<Sparkles className="w-3.5 h-3.5 text-amber-500" />}
           >
             <h3 className="font-serif text-2xl md:text-[1.65rem] text-ink-950 leading-snug mb-6">
-              Intro call: AllFound
+              Fundraise sync — Groq
             </h3>
             <div className="space-y-5 text-[15px] leading-relaxed flex-1">
               <div>
-                <p className="font-semibold text-ink-900 mb-1.5">Overview</p>
-                <p className="text-ink-700">Raising $50M in June</p>
-                <p className="text-ink-400 text-sm mt-0.5">Investors are more likely A16Z & Antler</p>
+                <p className="font-semibold text-ink-900 mb-1.5">Round overview</p>
+                <p className="text-ink-700">Raising $50M with a target close in June</p>
+                <p className="text-ink-400 text-sm mt-0.5">Warm paths through Antler and a16z</p>
               </div>
               <div>
-                <p className="font-semibold text-ink-900 mb-1.5">Groq Valuation</p>
-                
-                <p className="text-ink-700 mt-1">~$180M post-money range discussed</p>
-                <p className="text-ink-700 mt-1">The valuation is close to 4x from what they are raising</p>
+                <p className="font-semibold text-ink-900 mb-1.5">Groq valuation</p>
+                <p className="text-ink-700">~$180M post-money discussed on the call</p>
+                <p className="text-ink-400 text-sm">Roughly 4× uplift from the prior round</p>
+                <p className="text-ink-700 mt-1">Deck v3 is the version going to investors</p>
               </div>
               <div>
-                <p className="font-semibold text-ink-900 mb-1.5">Deal Timeline</p>
-                <p className="text-ink-700">The raising fund amount will be closed in June</p>
-                <p className="text-ink-400 text-sm mt-0.5">They are raising $50M at a post money valuation of $180M</p>
+                <p className="font-semibold text-ink-900 mb-1.5">Action items</p>
+                <p className="text-ink-700">Send IC memo by Friday</p>
+                <p className="text-ink-400 text-sm mt-0.5">Align term sheet narrative before June outreach</p>
               </div>
             </div>
             <div className="mt-6 pt-4 border-t border-gray-100">
               <p className="text-[11px] font-mono text-ink-400 truncate">
-                flownote.app/share/a8Kx…
+                flownote.app/share/k9Qm…
               </p>
             </div>
           </NoteCard>

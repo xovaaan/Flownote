@@ -43,7 +43,7 @@ export function Sidebar() {
       </nav>
       <div className="p-4 border-t border-granola-200">
         <div className="flex items-center gap-3">
-          <UserButton afterSignOutUrl="/" appearance={{ elements: { avatarBox: "w-8 h-8 rounded-full" } }} />
+          <UserButton appearance={{ elements: { avatarBox: "w-8 h-8 rounded-full" } }} />
           <div className="flex-1 min-w-0">
             <p className="text-sm font-medium text-ink-800 truncate">{user?.fullName || user?.primaryEmailAddress?.emailAddress}</p>
             <p className="text-xs text-ink-400 truncate">Personal</p>
