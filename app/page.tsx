@@ -3,69 +3,107 @@ import { SignInButton, Show } from "@clerk/nextjs";
 import { Mic, Sparkles, Search, Lock, MessageSquare, FileText, ChevronRight, Play, CheckCircle2, Zap, BarChart2, Briefcase, Users, Laptop } from "lucide-react";
 import { FaqAccordion } from "@/components/faq-accordion";
 import { LandingBarChart, LandingLineChart } from "@/components/landing-charts";
+import { LandingBeforeAfter } from "@/components/landing-before-after";
 
 export default function HomePage() {
   return (
     <div className="min-h-screen flex flex-col bg-[#F9FAFB] overflow-hidden text-ink-900 font-sans selection:bg-ink-900 selection:text-white">
-      {/* GLOBAL NAVBAR */}
-      <div className="sticky top-0 z-50 px-4 md:px-8 py-4 w-full">
-        <nav className="flex items-center justify-between px-6 py-3 max-w-7xl mx-auto w-full bg-white/70 backdrop-blur-xl border border-white/50 shadow-sm rounded-2xl animate-fade-in-up">
-          <div className="flex items-center gap-2">
-            <img src="/note.png" alt="Flownote" className="w-6 h-6 object-contain" />
-            <span className="font-bold text-xl tracking-tight text-ink-950">Flownote</span>
-          </div>
-          <div className="flex items-center gap-6">
-            <Show when="signed-out">
-              <SignInButton mode="modal">
-                <button className="text-sm font-semibold text-ink-600 hover:text-ink-900 transition-colors">Log in</button>
-              </SignInButton>
-              <SignInButton mode="modal">
-                <button className="text-sm font-bold bg-ink-950 text-white px-5 py-2 rounded-full hover:bg-ink-900 transition-all shadow-sm">Get Started</button>
-              </SignInButton>
-            </Show>
-            <Show when="signed-in">
-              <Link href="/dashboard" className="text-sm font-bold bg-ink-950 text-white px-5 py-2 rounded-full hover:bg-ink-900 transition-all shadow-sm">Dashboard</Link>
-            </Show>
-          </div>
-        </nav>
-      </div>
-
       <main className="flex-1 flex flex-col">
-        {/* HERO SECTION */}
-        <section className="px-6 pt-24 pb-20 text-center max-w-4xl mx-auto space-y-8 relative">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-tr from-gray-200/40 via-gray-100/40 to-transparent blur-3xl rounded-full -z-10 pointer-events-none" />
+        {/* HERO + NAVBAR */}
+        <section className="relative min-h-[92vh] flex flex-col">
+          <div
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            style={{ backgroundImage: "url(/one.jpg)" }}
+            aria-hidden
+          />
+          <div
+            className="absolute inset-0 bg-gradient-to-b from-sky-950/25 via-emerald-950/45 to-emerald-950/75"
+            aria-hidden
+          />
+          <div className="absolute inset-0 bg-black/15" aria-hidden />
 
-          <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-md border border-gray-200 text-ink-700 px-4 py-1.5 rounded-full text-xs font-semibold shadow-sm animate-fade-in-up uppercase tracking-widest">
-            <img src="/note.png" alt="AI" className="w-3.5 h-3.5 object-contain" /> Flownote 2.0 is live
+          <header className="sticky top-0 z-50 px-4 md:px-8 py-4 w-full">
+            <nav className="flex items-center justify-between px-6 py-3 max-w-7xl mx-auto w-full rounded-2xl border border-white/25 bg-white/15 backdrop-blur-2xl backdrop-saturate-150 shadow-[0_8px_32px_rgba(0,0,0,0.12)] animate-fade-in-up">
+              <div className="flex items-center gap-2">
+                <img src="/note.png" alt="Flownote" className="w-6 h-6 object-contain drop-shadow-sm" />
+                <span className="font-bold text-xl tracking-tight text-white drop-shadow-sm">Flownote</span>
+              </div>
+              <div className="flex items-center gap-4 md:gap-6">
+                <Show when="signed-out">
+                  <SignInButton mode="modal">
+                    <button className="text-sm font-semibold text-white/90 hover:text-white transition-colors drop-shadow-sm">
+                      Log in
+                    </button>
+                  </SignInButton>
+                  <SignInButton mode="modal">
+                    <button className="text-sm font-bold bg-white text-ink-950 px-5 py-2 rounded-full hover:bg-white/90 transition-all shadow-md">
+                      Get Started
+                    </button>
+                  </SignInButton>
+                </Show>
+                <Show when="signed-in">
+                  <Link
+                    href="/dashboard"
+                    className="text-sm font-bold bg-white text-ink-950 px-5 py-2 rounded-full hover:bg-white/90 transition-all shadow-md"
+                  >
+                    Dashboard
+                  </Link>
+                </Show>
+              </div>
+            </nav>
+          </header>
+
+          <div className="relative z-10 flex-1 flex flex-col items-center justify-center px-6 pt-8 pb-16 md:pb-24 text-center max-w-4xl mx-auto w-full space-y-8">
+            <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-md border border-white/30 text-white px-4 py-1.5 rounded-full text-xs font-semibold shadow-lg animate-fade-in-up uppercase tracking-widest">
+              <img src="/note.png" alt="AI" className="w-3.5 h-3.5 object-contain brightness-0 invert" /> Flownote 2.0 is live
+            </div>
+
+            <h1
+              className="text-5xl md:text-6xl font-bold tracking-tight text-white leading-[1.1] drop-shadow-lg animate-fade-in-up"
+              style={{ animationDelay: "100ms" }}
+            >
+              The professional&apos;s choice for <br className="hidden md:block" />
+              <span className="text-white/95">meeting intelligence.</span>
+            </h1>
+
+            <p
+              className="text-lg md:text-xl text-white/85 max-w-2xl mx-auto leading-relaxed animate-fade-in-up font-medium drop-shadow-md"
+              style={{ animationDelay: "200ms" }}
+            >
+              Capture system audio natively. Annotate in real-time. Search across weeks of conversations. Your private
+              knowledge base, built effortlessly.
+            </p>
+
+            <div
+              className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4 animate-fade-in-up"
+              style={{ animationDelay: "300ms" }}
+            >
+              <Show when="signed-out">
+                <SignInButton mode="modal">
+                  <button className="bg-white text-ink-950 px-8 py-3.5 rounded-full text-base font-semibold hover:bg-white/90 transition-all shadow-xl hover:shadow-2xl active:scale-95 flex items-center gap-2">
+                    Start for free <ChevronRight className="w-4 h-4" />
+                  </button>
+                </SignInButton>
+              </Show>
+              <Show when="signed-in">
+                <Link
+                  href="/dashboard"
+                  className="bg-white text-ink-950 px-8 py-3.5 rounded-full text-base font-semibold hover:bg-white/90 transition-all shadow-xl hover:shadow-2xl active:scale-95 flex items-center gap-2"
+                >
+                  Go to Dashboard <ChevronRight className="w-4 h-4" />
+                </Link>
+              </Show>
+            </div>
           </div>
-          
-          <h1 className="text-5xl md:text-6xl font-bold tracking-tight text-ink-950 leading-[1.1] animate-fade-in-up" style={{ animationDelay: '100ms' }}>
-            The professional's choice for <br className="hidden md:block" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-gray-600 to-ink-950">meeting intelligence.</span>
-          </h1>
-          
-          <p className="text-lg md:text-xl text-ink-500 max-w-2xl mx-auto leading-relaxed animate-fade-in-up font-medium" style={{ animationDelay: '200ms' }}>
-            Capture system audio natively. Annotate in real-time. Search across weeks of conversations. Your private knowledge base, built effortlessly.
-          </p>
-          
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-6 animate-fade-in-up" style={{ animationDelay: '300ms' }}>
-            <Show when="signed-out">
-              <SignInButton mode="modal">
-                <button className="bg-ink-950 text-white px-8 py-3.5 rounded-full text-base font-semibold hover:bg-ink-900 transition-all shadow-lg hover:shadow-xl active:scale-95 flex items-center gap-2">
-                  Start for free <ChevronRight className="w-4 h-4" />
-                </button>
-              </SignInButton>
-            </Show>
-            <Show when="signed-in">
-              <Link href="/dashboard" className="bg-ink-950 text-white px-8 py-3.5 rounded-full text-base font-semibold hover:bg-ink-900 transition-all shadow-lg hover:shadow-xl active:scale-95 flex items-center gap-2">
-                Go to Dashboard <ChevronRight className="w-4 h-4" />
-              </Link>
-            </Show>
-          </div>
+
+          <div
+            className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#F9FAFB] to-transparent pointer-events-none"
+            aria-hidden
+          />
         </section>
 
         {/* MOCKUP SECTION */}
-        <section className="px-4 md:px-8 pb-32 max-w-6xl mx-auto w-full animate-fade-in-up" style={{ animationDelay: '400ms' }}>
+        <section className="relative z-10 px-4 md:px-8 -mt-8 pb-32 max-w-6xl mx-auto w-full animate-fade-in-up" style={{ animationDelay: "400ms" }}>
           <div className="bg-white rounded-[2rem] border border-gray-200 shadow-2xl p-2 group">
             <div className="bg-gray-50 rounded-[1.5rem] border border-gray-100 aspect-[16/10] md:aspect-video flex flex-col items-center justify-center relative overflow-hidden shadow-inner">
               <div className="absolute top-0 w-full h-12 bg-white/40 backdrop-blur-md border-b border-white/20 flex items-center px-6 gap-2 z-20">
@@ -76,17 +114,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* LOGOS / SOCIAL PROOF */}
-        <section className="py-12 border-y border-gray-200 bg-white text-center">
-          <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-8">Trusted by teams at</p>
-          <div className="flex flex-wrap justify-center items-center gap-12 md:gap-24 opacity-50 grayscale">
-            <div className="font-bold text-xl tracking-tighter">ACME Corp</div>
-            <div className="font-black text-xl italic">Globex</div>
-            <div className="font-semibold text-xl tracking-widest">INITECH</div>
-            <div className="font-bold text-xl">Soylent</div>
-            <div className="font-medium text-xl tracking-tight">Hooli</div>
-          </div>
-        </section>
+        <LandingBeforeAfter />
 
         {/* FEATURE: ENHANCE YOUR MEETING */}
         <section className="py-32 px-4 md:px-8 bg-white border-y border-gray-200">

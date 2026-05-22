@@ -4,7 +4,9 @@ import { db } from "@/db";
 import { meetings } from "@/db/schema";
 import { eq, and, desc } from "drizzle-orm";
 import { NoteEditor } from "@/components/note-editor";
-import { EnhancedView } from "@/components/enhanced-view";
+import { EnhancedSummary } from "@/components/enhanced-summary";
+import { ShareMeetingLink } from "@/components/share-meeting-link";
+import { getShareUrl } from "@/lib/share";
 import { AIChat } from "@/components/ai-chat";
 import { ChatDrawer } from "@/components/chat-drawer";
 import { formatDate, formatDuration } from "@/lib/utils";
@@ -56,12 +58,15 @@ export default async function MeetingPage({ params }: Props) {
           </section>
 
           {meeting.isEnhanced && meeting.enhancedNotes && (
-            <section>
-              <div className="flex items-center gap-2 mb-3">
-                <h2 className="text-sm font-semibold text-ink-400 uppercase tracking-wider">Enhanced Summary</h2>
-                <img src="/note.png" alt="AI" className="w-4 h-4 object-contain opacity-70" />
-              </div>
-              <EnhancedView content={meeting.enhancedNotes} />
+            <section className="space-y-4">
+              <h2 className="text-sm font-semibold text-ink-400 uppercase tracking-wider mb-3">
+                Enhanced Summary
+              </h2>
+              <ShareMeetingLink
+                meetingId={meeting.id}
+                initialUrl={meeting.shareToken ? getShareUrl(meeting.shareToken) : null}
+              />
+              <EnhancedSummary content={meeting.enhancedNotes} />
             </section>
           )}
 

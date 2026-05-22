@@ -55,7 +55,7 @@ export function NoteEditor({ meeting }: Props) {
       {meeting.isEnhanced && (
         <div className="flex items-center gap-2 text-xs text-granola-600 bg-granola-100 rounded-lg px-3 py-2">
           <img src="/note.png" alt="AI" className="w-3.5 h-3.5 object-contain opacity-80" />
-          This meeting has been enhanced with AI. Scroll down to see the structured summary.
+          AI-enhanced summary is below.
         </div>
       )}
     </div>

@@ -4,7 +4,7 @@ const API_KEY = process.env.OPENROUTER_API_KEY;
 const MODELS = {
   primary: "nvidia/nemotron-3-super-120b-a12b:free",
   fallback: "nvidia/nemotron-nano-2-vl:free",
-  auto: "openrouter/router",
+  auto: "openrouter/auto",
 };
 
 interface ChatMessage {
@@ -39,31 +39,46 @@ async function callOpenRouter(
 }
 
 export async function enhanceNotes(rawNotes: string, transcript: string): Promise<string> {
-  const systemPrompt = `You are an expert meeting note enhancer. Your job is to take raw user notes and a transcript, then produce a beautifully structured, scannable meeting summary.
+  if (!API_KEY) throw new Error("OPENROUTER_API_KEY is not configured");
 
-Rules:
-- Preserve the user's original emphasis and intent. Mark AI-generated additions distinctly.
-- Use markdown: headers, bullet lists, bold for key terms, blockquotes for direct quotes.
-- Extract clear Action Items with assignees (if mentioned) and deadlines.
-- Add a "Key Decisions" section.
-- Add a "Follow-ups" section.
-- Keep the tone professional but warm.
-- If the user wrote something in their raw notes, keep it verbatim unless it needs grammatical fixing.
-- Output ONLY the enhanced notes in markdown. No preamble.`;
+  const systemPrompt = `You are an expert meeting note enhancer. Produce a polished meeting summary as clean HTML for a modern notes app.
 
-  const userPrompt = `## Raw User Notes
+STRICT FORMAT RULES:
+- Output ONLY an HTML fragment. No markdown. No # or ## symbols. No asterisks for bold. No code fences.
+- Use only these tags: h2, h3, p, strong, em, ul, ol, li, blockquote, table, thead, tbody, tr, th, td
+- Section titles must be <h2> (e.g. Overview, Key Decisions, Action Items, Follow-ups)
+- Use <strong> for names, decisions, dates, and key terms
+- Use <ul><li> or <ol><li> for simple lists
+- For action items or structured data with columns, use an HTML <table> with <thead><tr><th>...</th></tr></thead> and <tbody><tr><td>...</td></tr></tbody> — NEVER markdown pipe tables (no | characters)
+- Use <p> for paragraphs
+- Use <blockquote> for direct quotes from the transcript
+- Keep tone professional and warm
+- Preserve the user's intent; lightly fix grammar only where needed
+- No preamble, no explanation, no wrapping <html> or <body> tags`;
+
+  const userPrompt = `Raw user notes:
 ${rawNotes || "(No raw notes provided)"}
 
-## Transcript
+Transcript:
 ${transcript || "(No transcript provided)"}
 
-Please enhance these meeting notes.`;
+Create the enhanced summary as HTML.`;
 
-  try {
-    return await callOpenRouter([{ role: "system", content: systemPrompt }, { role: "user", content: userPrompt }], MODELS.primary, 0.3, 4000);
-  } catch {
-    return callOpenRouter([{ role: "system", content: systemPrompt }, { role: "user", content: userPrompt }], MODELS.auto, 0.3, 4000);
+  const messages: ChatMessage[] = [
+    { role: "system", content: systemPrompt },
+    { role: "user", content: userPrompt },
+  ];
+
+  for (const model of [MODELS.primary, MODELS.fallback, MODELS.auto]) {
+    try {
+      const result = await callOpenRouter(messages, model, 0.3, 4000);
+      if (result.trim()) return result;
+    } catch (err) {
+      console.error(`enhanceNotes failed with ${model}:`, err);
+    }
   }
+
+  throw new Error("All AI models failed. Check your OpenRouter API key and try again.");
 }
 
 export async function askMeetingQuestion(question: string, notes: string, transcript: string): Promise<string> {
@@ -112,7 +127,7 @@ ${transcript}
 ${notes}
 
 Suggest 3 questions.`;
-  const response = await callOpenRouter([{ role: "system", content: systemPrompt }, { role: "user", content: userPrompt }], MODELS.fallback, 0.5, 500);
+  const response = await callOpenRouter([{ role: "system", content: systemPrompt }, { role: "user", content: userPrompt }], MODELS.primary, 0.5, 500);
   try {
     const cleaned = response.replace(/```json|```/g, "").trim();
     return JSON.parse(cleaned);

@@ -20,6 +20,57 @@
   .editor-content code { @apply bg-granola-100 px-1.5 py-0.5 rounded text-sm font-mono; }
   .editor-content pre { @apply bg-ink-900 text-granola-100 p-4 rounded-lg overflow-x-auto; }
   .editor-content a { @apply text-granola-700 underline underline-offset-2 hover:text-granola-900; }
+
+  /* Enhanced summary card */
+  .enhanced-summary-card {
+    @apply relative bg-white rounded-2xl border border-granola-200/90 shadow-sm overflow-hidden;
+  }
+  .enhanced-summary-accent {
+    @apply absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-granola-400 via-granola-600 to-granola-400;
+  }
+  .enhanced-summary-header {
+    @apply px-6 pt-5 pb-0;
+  }
+  .enhanced-summary-icon {
+    @apply flex items-center justify-center w-6 h-6 rounded-md bg-granola-100 text-granola-700;
+  }
+  .enhanced-summary-body {
+    @apply px-6 py-5 pb-6;
+  }
+
+  /* Rich summary typography */
+  .rich-summary { @apply text-[15px] text-ink-700 leading-[1.65] max-w-none; }
+  .rich-summary h2 {
+    @apply text-[11px] font-semibold uppercase tracking-widest text-granola-600 mt-8 mb-3 first:mt-0 pb-2 border-b border-granola-100;
+  }
+  .rich-summary h3 { @apply text-base font-semibold text-ink-900 mt-5 mb-2; }
+  .rich-summary p { @apply mb-3.5 last:mb-0 text-ink-700; }
+  .rich-summary strong { @apply font-semibold text-ink-900; }
+  .rich-summary em { @apply italic text-ink-600; }
+  .rich-summary ul { @apply mb-4 space-y-2 pl-0 list-none; }
+  .rich-summary ul li {
+    @apply relative pl-5 text-ink-700 before:content-[''] before:absolute before:left-0 before:top-[0.6em] before:w-1.5 before:h-1.5 before:rounded-full before:bg-granola-500;
+  }
+  .rich-summary ol { @apply list-decimal pl-5 mb-4 space-y-2 marker:text-granola-600 marker:font-medium; }
+  .rich-summary li { @apply text-ink-700; }
+  .rich-summary blockquote {
+    @apply my-4 py-3 px-4 rounded-xl bg-granola-50 border border-granola-100 text-ink-600 text-sm not-italic;
+  }
+  .rich-summary .table-scroll {
+    @apply my-5 -mx-1 overflow-x-auto rounded-xl border border-granola-200/80;
+  }
+  .rich-summary table,
+  .rich-summary .summary-table {
+    @apply w-full min-w-[480px] border-collapse text-sm bg-white;
+  }
+  .rich-summary th {
+    @apply bg-granola-50 text-left text-xs font-semibold uppercase tracking-wide text-ink-600 px-4 py-3 border-b border-granola-200;
+  }
+  .rich-summary td {
+    @apply px-4 py-3 text-ink-700 border-b border-granola-100/80 align-top leading-snug;
+  }
+  .rich-summary tbody tr:last-child td { @apply border-b-0; }
+  .rich-summary tbody tr:nth-child(even) td { @apply bg-granola-50/40; }
 }
 
 ::-webkit-scrollbar { width: 6px; height: 6px; }

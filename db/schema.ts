@@ -10,6 +10,7 @@ export const meetings = pgTable("meetings", {
   durationSeconds: integer("duration_seconds").notNull().default(0),
   folder: text("folder"),
   isEnhanced: boolean("is_enhanced").notNull().default(false),
+  shareToken: text("share_token").unique(),
   createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),
   updatedAt: timestamp("updated_at", { withTimezone: true }).defaultNow().notNull(),
 });

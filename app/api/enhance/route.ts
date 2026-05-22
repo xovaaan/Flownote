@@ -4,6 +4,10 @@ import { db } from "@/db";
 import { meetings } from "@/db/schema";
 import { eq, and } from "drizzle-orm";
 import { enhanceNotes } from "@/lib/openrouter";
+import { normalizeEnhancedHtml } from "@/lib/enhanced-html";
+
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
 
 export async function POST(req: NextRequest) {
   const { userId } = await auth();
@@ -15,7 +19,12 @@ export async function POST(req: NextRequest) {
 
   try {
     const enhanced = await enhanceNotes(meeting.rawNotes, meeting.transcript);
-    const [data] = await db.update(meetings).set({ enhancedNotes: enhanced, isEnhanced: true }).where(eq(meetings.id, meetingId)).returning();
+    const html = normalizeEnhancedHtml(enhanced);
+    const [data] = await db
+      .update(meetings)
+      .set({ enhancedNotes: html, isEnhanced: true })
+      .where(eq(meetings.id, meetingId))
+      .returning();
     return NextResponse.json(data);
   } catch (err: any) {
     return NextResponse.json({ error: err.message || "Enhancement failed" }, { status: 500 });

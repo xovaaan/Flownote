@@ -23,7 +23,9 @@ export async function POST(req: NextRequest) {
   const notes = userMeetings.map((m) => ({
     id: m.id,
     title: m.title,
-    content: m.enhancedNotes || m.rawNotes || "",
+    content: m.enhancedNotes
+      ? m.enhancedNotes.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim()
+      : m.rawNotes || "",
     date: new Date(m.createdAt).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric", hour: "numeric", minute: "2-digit" }),
   }));
 

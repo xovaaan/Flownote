@@ -11,14 +11,14 @@ A web-based AI meeting notes app — a personal Granola clone. No apps, no team 
   - Primary: `nvidia/nemotron-3-super-120b-a12b:free` (120B MoE, 1M context)
   - Fallback: `nvidia/nemotron-nano-2-vl:free` (12B multimodal)
   - Auto: `openrouter/router` (rotates free models)
-- **Web Speech API** — Browser-native transcription
+- **Groq Whisper** — Server-side transcription via `whisper-large-v3`
 - **Tailwind CSS** — Granola-inspired warm neutral palette
 
 ## Features
 
 | Feature | Description |
 |---------|-------------|
-| Invisible Transcription | Browser Web Speech API — no bot joins your call |
+| Invisible Transcription | Groq Whisper — no bot joins your call |
 | Live Recording | Record, pause, resume with timer |
 | Raw Notes Editor | Jot thoughts during/after meetings |
 | AI Enhancement | One-click structured summary with action items, decisions, follow-ups |
@@ -77,4 +77,4 @@ CREATE TABLE meetings (
 
 - **Chrome/Edge**: Full support
 - **Safari**: Limited
-- **Firefox**: Not supported (no Web Speech API)
+- **Microphone**: Required in any modern browser for recording
