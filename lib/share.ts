@@ -4,7 +4,7 @@ export function generateShareToken(): string {
   return randomBytes(12).toString("base64url");
 }
 
-const PRODUCTION_APP_URL = "https://www.flownoteai.vercel.app";
+const PRODUCTION_APP_URL = "https://flownoteai.vercel.app";
 
 export function getAppBaseUrl(): string {
   if (process.env.NEXT_PUBLIC_APP_URL) {
