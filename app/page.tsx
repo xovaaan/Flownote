@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { SignInButton, Show } from "@clerk/nextjs";
-import { Mic, Sparkles, Search, Lock, MessageSquare, FileText, ChevronRight, Play, CheckCircle2, Zap, BarChart2, Briefcase, Users, Laptop } from "lucide-react";
+import { Mic, Sparkles, Search, Lock, MessageSquare, FileText, ChevronRight, Play, CheckCircle2, Zap, BarChart2, Briefcase, Users, Laptop, Github } from "lucide-react";
 import { FaqAccordion } from "@/components/faq-accordion";
 import { LandingBarChart, LandingLineChart } from "@/components/landing-charts";
 import { LandingBeforeAfter } from "@/components/landing-before-after";
@@ -13,7 +13,7 @@ export default function HomePage() {
         <section className="relative min-h-[92vh] flex flex-col">
           <div
             className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-            style={{ backgroundImage: "url(/one.jpg)" }}
+            style={{ backgroundImage: "url(/three.jpg)" }}
             aria-hidden
           />
           <div
@@ -23,12 +23,37 @@ export default function HomePage() {
           <div className="absolute inset-0 bg-black/15" aria-hidden />
 
           <header className="sticky top-0 z-50 px-4 md:px-8 py-4 w-full">
-            <nav className="flex items-center justify-between px-6 py-3 max-w-7xl mx-auto w-full rounded-2xl border border-white/25 bg-white/15 backdrop-blur-2xl backdrop-saturate-150 shadow-[0_8px_32px_rgba(0,0,0,0.12)] animate-fade-in-up">
-              <div className="flex items-center gap-2">
+            <nav className="flex items-center justify-between gap-4 px-6 py-3 max-w-7xl mx-auto w-full rounded-2xl border border-white/25 bg-white/15 backdrop-blur-2xl backdrop-saturate-150 shadow-[0_8px_32px_rgba(0,0,0,0.12)] animate-fade-in-up">
+              <Link href="/" className="flex items-center gap-2 shrink-0">
                 <img src="/note.png" alt="Flownote" className="w-6 h-6 object-contain drop-shadow-sm" />
                 <span className="font-bold text-xl tracking-tight text-white drop-shadow-sm">Flownote</span>
+              </Link>
+
+              <div className="flex items-center gap-4 sm:gap-8">
+                <a
+                  href="#features"
+                  className="text-sm font-semibold text-white/90 hover:text-white transition-colors drop-shadow-sm"
+                >
+                  Features
+                </a>
+                <a
+                  href="#pricing"
+                  className="text-sm font-semibold text-white/90 hover:text-white transition-colors drop-shadow-sm"
+                >
+                  Pricing
+                </a>
               </div>
-              <div className="flex items-center gap-4 md:gap-6">
+
+              <div className="flex items-center gap-3 md:gap-4">
+                <a
+                  href="https://github.com/xovaaan/Flownote"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Flownote on GitHub"
+                  className="text-white/90 hover:text-white transition-colors p-1.5 rounded-lg hover:bg-white/10"
+                >
+                  <Github className="w-5 h-5" strokeWidth={2} />
+                </a>
                 <Show when="signed-out">
                   <SignInButton mode="modal">
                     <button className="text-sm font-semibold text-white/90 hover:text-white transition-colors drop-shadow-sm">
@@ -114,6 +139,7 @@ export default function HomePage() {
           </div>
         </section>
 
+        <div id="features" className="scroll-mt-24">
         <LandingBeforeAfter />
 
         {/* FEATURE: ENHANCE YOUR MEETING */}
@@ -196,69 +222,87 @@ export default function HomePage() {
         </section>
 
         {/* FEATURE: SEARCH ACROSS MEETING */}
-        <section className="py-32 px-4 md:px-8 bg-white border-y border-gray-200">
-          <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-            <div className="order-2 md:order-1 relative group">
-              <div className="absolute inset-0 bg-gradient-to-tr from-gray-200 to-transparent rounded-[2rem] transform translate-y-4 translate-x-4 -z-10 group-hover:translate-y-6 group-hover:translate-x-6 transition-transform duration-500" />
-              <div className="bg-gray-50 rounded-[2rem] p-10 border border-gray-200 shadow-xl relative overflow-hidden">
-                <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-4 text-sm font-medium text-ink-700">
-                  <div className="flex items-center gap-3 text-ink-400 mb-6 pb-4 border-b border-gray-100">
-                    <Search className="w-5 h-5 text-ink-900" /> <span className="text-lg">What were the main blockers for Project X?</span>
+        <section
+          className="relative py-32 px-4 md:px-8 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: "url(/three.jpg)" }}
+        >
+          <div className="relative z-10 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+            <div className="order-2 md:order-1">
+              <div className="rounded-[2rem] p-8 md:p-10 border border-white/30 bg-white/15 backdrop-blur-2xl backdrop-saturate-150 shadow-[0_8px_40px_rgba(0,0,0,0.18)]">
+                <div className="rounded-2xl border border-white/35 bg-white/20 backdrop-blur-xl shadow-[inset_0_1px_0_rgba(255,255,255,0.35)] p-5 text-sm font-medium text-ink-800">
+                  <div className="flex items-center gap-3 text-ink-700 mb-6 pb-4 border-b border-white/30">
+                    <Search className="w-5 h-5 text-ink-900 shrink-0" />
+                    <span className="text-lg text-ink-900">What were the main blockers for Project X?</span>
                   </div>
                   <div className="space-y-4">
-                    <div className="bg-gray-50 p-4 rounded-xl border border-gray-100">
-                      <div className="text-xs text-gray-400 mb-2 font-bold uppercase tracking-widest">Found in "Weekly Sync" (Oct 12)</div>
-                      <p className="text-ink-600">The API dependency from the core team is delayed by two weeks.</p>
+                    <div className="p-4 rounded-xl border border-white/30 bg-white/25 backdrop-blur-md">
+                      <div className="text-xs text-ink-500 mb-2 font-bold uppercase tracking-widest">
+                        Found in &quot;Weekly Sync&quot; (Oct 12)
+                      </div>
+                      <p className="text-ink-800">The API dependency from the core team is delayed by two weeks.</p>
                     </div>
-                    <div className="bg-gray-50 p-4 rounded-xl border border-gray-100">
-                      <div className="text-xs text-gray-400 mb-2 font-bold uppercase tracking-widest">Found in "Design Review" (Oct 14)</div>
-                      <p className="text-ink-600">We are waiting on final copy approval from Legal.</p>
+                    <div className="p-4 rounded-xl border border-white/30 bg-white/25 backdrop-blur-md">
+                      <div className="text-xs text-ink-500 mb-2 font-bold uppercase tracking-widest">
+                        Found in &quot;Design Review&quot; (Oct 14)
+                      </div>
+                      <p className="text-ink-800">We are waiting on final copy approval from Legal.</p>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
             <div className="order-1 md:order-2 space-y-6">
-              <div className="inline-flex items-center gap-2 bg-gray-100 text-ink-700 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest">
+              <div className="inline-flex items-center gap-2 border border-white/30 bg-white/15 backdrop-blur-xl text-white px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest shadow-sm">
                 <Search className="w-3.5 h-3.5" /> Semantic Knowledge
               </div>
-              <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-ink-950 leading-[1.1]">Search Across Meeting.</h2>
-              <p className="text-xl text-ink-500 leading-relaxed font-medium">
-                Don't just search for keywords. Ask semantic questions across your entire meeting history to find patterns, decisions, and action items instantly.
+              <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-white leading-[1.1] drop-shadow-md">
+                Search Across Meeting.
+              </h2>
+              <p className="text-xl text-white/90 leading-relaxed font-medium drop-shadow-sm max-w-lg">
+                Don&apos;t just search for keywords. Ask semantic questions across your entire meeting history to find patterns, decisions, and action items instantly.
               </p>
             </div>
           </div>
         </section>
 
         {/* FEATURE: DETAILED ANALYTICS */}
-        <section className="py-32 px-4 md:px-8 bg-gray-50">
-          <div className="max-w-7xl mx-auto flex flex-col items-center text-center">
-            <div className="inline-flex items-center gap-2 bg-white border border-gray-200 text-ink-700 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest shadow-sm mb-6">
+        <section
+          className="relative py-32 px-4 md:px-8 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: "url(/four.jpg)" }}
+        >
+          <div className="relative z-10 max-w-7xl mx-auto flex flex-col items-center text-center">
+            <div className="inline-flex items-center gap-2 border border-white/30 bg-white/15 backdrop-blur-xl text-white px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest shadow-sm mb-6">
               <BarChart2 className="w-3.5 h-3.5" /> Data Driven
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-ink-950 leading-[1.1] mb-6">Detailed Analytics.</h2>
-            <p className="text-xl text-ink-500 leading-relaxed font-medium max-w-2xl mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-ink-950 leading-[1.1] mb-6">
+              Detailed Analytics.
+            </h2>
+            <p className="text-xl text-ink-950 leading-relaxed font-medium max-w-2xl mb-16">
               Track your meeting activity over time. Visualize the volume of knowledge you are capturing and understand your collaboration patterns at a glance.
             </p>
-            
-            <div className="w-full bg-white rounded-[2rem] p-8 md:p-12 border border-gray-200 shadow-xl flex flex-col md:flex-row gap-8">
-              <div className="flex-1 bg-gray-50/50 rounded-2xl border border-gray-100 p-8">
+
+            <div className="w-full rounded-[2rem] p-6 md:p-10 border border-white/30 bg-white/15 backdrop-blur-2xl backdrop-saturate-150 shadow-[0_8px_40px_rgba(0,0,0,0.18)] flex flex-col md:flex-row gap-6 md:gap-8">
+              <div className="flex-1 rounded-2xl border border-white/35 bg-white/20 backdrop-blur-xl shadow-[inset_0_1px_0_rgba(255,255,255,0.35)] p-6 md:p-8 text-left">
                 <div className="flex justify-between items-end mb-8">
                   <div>
-                    <p className="text-sm font-bold text-gray-500 uppercase tracking-widest mb-1">Meetings Recorded</p>
+                    <p className="text-sm font-bold text-ink-600 uppercase tracking-widest mb-1">Meetings Recorded</p>
                     <div className="text-3xl font-black text-ink-950">15</div>
                   </div>
-                  <div className="text-sm font-bold text-green-600 bg-green-50 px-2 py-1 rounded-md">+20%</div>
+                  <div className="text-sm font-bold text-emerald-800 bg-emerald-400/25 border border-emerald-500/30 backdrop-blur-sm px-2 py-1 rounded-md">
+                    +20%
+                  </div>
                 </div>
                 <LandingBarChart />
               </div>
-              <div className="flex-1 bg-gray-50/50 rounded-2xl border border-gray-100 p-8">
+              <div className="flex-1 rounded-2xl border border-white/35 bg-white/20 backdrop-blur-xl shadow-[inset_0_1px_0_rgba(255,255,255,0.35)] p-6 md:p-8 text-left">
                 <div className="flex justify-between items-end mb-8">
                   <div>
-                    <p className="text-sm font-bold text-gray-500 uppercase tracking-widest mb-1">Words Captured</p>
+                    <p className="text-sm font-bold text-ink-600 uppercase tracking-widest mb-1">Words Captured</p>
                     <div className="text-3xl font-black text-ink-950">4,650</div>
                   </div>
-                  <div className="text-sm font-bold text-green-600 bg-green-50 px-2 py-1 rounded-md">+12%</div>
+                  <div className="text-sm font-bold text-emerald-800 bg-emerald-400/25 border border-emerald-500/30 backdrop-blur-sm px-2 py-1 rounded-md">
+                    +12%
+                  </div>
                 </div>
                 <LandingLineChart />
               </div>
@@ -293,9 +337,10 @@ export default function HomePage() {
             </div>
           </div>
         </section>
+        </div>
 
         {/* PRICING */}
-        <section className="py-32 px-4 md:px-8 bg-gray-50 relative overflow-hidden">
+        <section id="pricing" className="scroll-mt-24 py-32 px-4 md:px-8 bg-gray-50 relative overflow-hidden">
           <div className="max-w-5xl mx-auto w-full relative z-10">
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">Simple, transparent pricing.</h2>
@@ -384,8 +429,8 @@ export default function HomePage() {
           <div>
             <h4 className="text-ink-950 font-bold mb-4 tracking-wide uppercase text-xs">Product</h4>
             <ul className="space-y-3 font-medium text-sm">
-              <li><Link href="#" className="hover:text-ink-900 transition-colors">Features</Link></li>
-              <li><Link href="#" className="hover:text-ink-900 transition-colors">Pricing</Link></li>
+              <li><Link href="#features" className="hover:text-ink-900 transition-colors">Features</Link></li>
+              <li><Link href="#pricing" className="hover:text-ink-900 transition-colors">Pricing</Link></li>
               <li><Link href="#" className="hover:text-ink-900 transition-colors">Security</Link></li>
             </ul>
           </div>

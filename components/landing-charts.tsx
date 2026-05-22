@@ -10,14 +10,23 @@ const data = [
   { date: "May 20", meetings: 3, words: 900, searches: 2 },
 ];
 
+const axisTickStyle = { fill: "#ffffff", fontSize: 12 };
+const axisProps = {
+  stroke: "#ffffff",
+  fontSize: 12,
+  tickLine: false,
+  axisLine: false,
+  tick: axisTickStyle,
+} as const;
+
 export function LandingBarChart() {
   return (
     <div className="h-64 w-full">
       <ResponsiveContainer width="100%" height="100%">
         <BarChart data={data}>
           <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#E5E7EB" />
-          <XAxis dataKey="date" stroke="#9CA3AF" fontSize={12} tickLine={false} axisLine={false} />
-          <YAxis stroke="#9CA3AF" fontSize={12} tickLine={false} axisLine={false} allowDecimals={false} />
+          <XAxis dataKey="date" {...axisProps} />
+          <YAxis {...axisProps} allowDecimals={false} />
           <Tooltip 
             cursor={{ fill: '#F9FAFB' }}
             contentStyle={{ borderRadius: '12px', border: '1px solid #E5E7EB', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }}
@@ -35,8 +44,8 @@ export function LandingLineChart() {
       <ResponsiveContainer width="100%" height="100%">
         <LineChart data={data}>
           <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#E5E7EB" />
-          <XAxis dataKey="date" stroke="#9CA3AF" fontSize={12} tickLine={false} axisLine={false} />
-          <YAxis stroke="#9CA3AF" fontSize={12} tickLine={false} axisLine={false} />
+          <XAxis dataKey="date" {...axisProps} />
+          <YAxis {...axisProps} />
           <Tooltip 
             contentStyle={{ borderRadius: '12px', border: '1px solid #E5E7EB', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }}
           />
