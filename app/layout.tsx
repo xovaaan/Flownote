@@ -8,6 +8,11 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 export const metadata: Metadata = {
   title: "Flownote",
   description: "Take notes like a human. Remember like a machine.",
+  icons: {
+    icon: [{ url: "/note.png", type: "image/png" }],
+    shortcut: "/note.png",
+    apple: "/note.png",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

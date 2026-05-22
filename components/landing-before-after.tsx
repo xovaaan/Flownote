@@ -131,7 +131,7 @@ export function LandingBeforeAfter() {
             </div>
             <div className="mt-6 pt-4 border-t border-gray-100">
               <p className="text-[11px] font-mono text-ink-400 truncate">
-                flownote.app/share/k9Qm…
+                www.flownoteai.vercel.app/share/k9Qm…
               </p>
             </div>
           </NoteCard>

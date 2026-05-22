@@ -1,3 +1,5 @@
+import { getAppBaseUrl } from "@/lib/share";
+
 const OPENROUTER_BASE = "https://openrouter.ai/api/v1";
 const API_KEY = process.env.OPENROUTER_API_KEY;
 
@@ -23,7 +25,7 @@ async function callOpenRouter(
     headers: {
       Authorization: `Bearer ${API_KEY}`,
       "Content-Type": "application/json",
-      "HTTP-Referer": process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000",
+      "HTTP-Referer": getAppBaseUrl(),
       "X-Title": "Granola Web",
     },
     body: JSON.stringify({ model, messages, temperature, max_tokens: maxTokens }),
